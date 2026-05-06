@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VetApp - Clínica Veterinaria</title>
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="front/style.css">
+</head>
+<body>
+
+    <!-- Sidebar Layout -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <i class="fa-solid fa-paw logo-icon"></i>
+            <h2>S/N</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-target="view-dashboard">
+                <i class="fa-solid fa-chart-pie"></i> Dashboard
+            </a>
+            <a href="#" class="nav-item" data-target="view-pacientes">
+                <i class="fa-solid fa-dog"></i> Pacientes
+            </a>
+            <a href="#" class="nav-item" data-target="view-vacunacion">
+                <i class="fa-solid fa-syringe"></i> Vacunación
+            </a>
+            <a href="#" class="nav-item" data-target="view-agenda">
+                <i class="fa-regular fa-calendar-days"></i> Agenda
+            </a>
+            <a href="#" class="nav-item" data-target="view-hospital">
+                <i class="fa-solid fa-hospital"></i> Hospital
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="avatar">Dr</div>
+                <span>Dr. Admin</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- View: Dashboard -->
+        <section id="view-dashboard" class="view-section active">
+            <header class="view-header">
+                <div>
+                
+                    <p>Resumen del día de hoy</p>
+                </div>
+            </header>
+            
+            <div class="dashboard-cards">
+                <div class="card stat-card">
+                    <div class="card-icon blue"><i class="fa-solid fa-calendar-check"></i></div>
+                    <div class="card-info">
+                        <h3>Citas hoy</h3>
+                        <p class="stat-number">5</p>
+                    </div>
+                </div>
+                <div class="card stat-card">
+                    <div class="card-icon green"><i class="fa-solid fa-syringe"></i></div>
+                    <div class="card-info">
+                        <h3>Vacunas pendientes</h3>
+                        <p class="stat-number">3</p>
+                    </div>
+                </div>
+                <div class="card stat-card">
+                    <div class="card-icon orange"><i class="fa-solid fa-bed-pulse"></i></div>
+                    <div class="card-info">
+                        <h3>Camas libres</h3>
+                        <p class="stat-number">2</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Content -->
+            <div class="card" style="margin-top: 20px;">
+                <h3 style="margin-bottom: 15px;">Actividad Reciente</h3>
+                <p class="text-muted">No hay actividad reciente para mostrar.</p>
+            </div>
+        </section>
+
+        <!-- View: Pacientes -->
+        <section id="view-pacientes" class="view-section">
+            <header class="view-header">
+                <div>
+                    <h1>Directorio de Pacientes</h1>
+                    <p>Gestiona todos los registros de mascotas</p>
+                </div>
+                <button class="btn btn-primary" onclick="openModal('modal-nuevo-paciente')">
+                    <i class="fa-solid fa-plus"></i> Nuevo Paciente
+                </button>
+            </header>
+
+            <div class="card filter-bar">
+                <input type="text" placeholder="Buscar por nombre de mascota o dueño..." class="search-input">
+                <select class="filter-select">
+                    <option value="">Todas las especies</option>
+                    <option value="perro">Perros</option>
+                    <option value="gato">Gatos</option>
+                </select>
+            </div>
+
+            <div class="card table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Paciente</th>
+                            <th>Especie / Raza</th>
+                            <th>Dueño</th>
+                            <th>Última Visita</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="table-patient-info">
+                                    <img src="https://ui-avatars.com/api/?name=Max&background=random" alt="Max" class="pet-avatar-small">
+                                    <strong>Max</strong>
+                                </div>
+                            </td>
+                            <td>Perro / Labrador</td>
+                            <td>Juan Pérez</td>
+                            <td>12 Oct 2023</td>
+                            <td><span class="badge badge-normal">Sano</span></td>
+                            <td><button class="btn btn-sm btn-outline" onclick="openExpediente('Max')">Abrir Expediente</button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="table-patient-info">
+                                    <img src="https://ui-avatars.com/api/?name=Luna&background=random" alt="Luna" class="pet-avatar-small">
+                                    <strong>Luna</strong>
+                                </div>
+                            </td>
+                            <td>Gato / Siamés</td>
+                            <td>María Gómez</td>
+                            <td>24 Oct 2023</td>
+                            <td><span class="badge badge-warning"><i class="fa-solid fa-bed"></i> Hospitalizado</span></td>
+                            <td><button class="btn btn-sm btn-outline" onclick="openExpediente('Luna')">Abrir Expediente</button></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="table-patient-info">
+                                    <img src="https://ui-avatars.com/api/?name=Rocky&background=random" alt="Rocky" class="pet-avatar-small">
+                                    <strong>Rocky</strong>
+                                </div>
+                            </td>
+                            <td>Perro / Bulldog</td>
+                            <td>Carlos Ruiz</td>
+                            <td>05 Nov 2023</td>
+                            <td><span class="badge badge-danger">Vacuna Vencida</span></td>
+                            <td><button class="btn btn-sm btn-outline" onclick="openExpediente('Rocky')">Abrir Expediente</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- View: Expediente (Hidden by default, shown when a patient is selected) -->
+        <section id="view-expediente" class="view-section">
+            <header class="view-header with-back">
+                <div class="back-action">
+                    <button class="btn btn-icon" onclick="backToPacientes()"><i class="fa-solid fa-arrow-left"></i></button>
+                    <div>
+                        <h1 style="display: flex; align-items: center; gap: 10px;">Expediente Clínico <span class="status-indicator current-status-hospital" style="display:none;"><i class="fa-solid fa-bed"></i> Hospitalizado</span></h1>
+                    </div>
+                </div>
+            </header>
+
+            <div class="expediente-container">
+                <!-- Patient Profile Summary -->
+                <div class="card patient-profile-sidebar">
+                    <div class="profile-header">
+                        <img src="https://ui-avatars.com/api/?name=Pet&background=random&size=128" alt="Pet" class="pet-avatar-large" id="expediente-img">
+                        <h2 id="expediente-name">Nombre</h2>
+                        <p class="species-breed" id="expediente-breed">Especie • Raza</p>
+                    </div>
+                    <div class="profile-details">
+                        <div class="detail-row">
+                            <span class="label">Dueño:</span>
+                            <span class="value" id="expediente-owner">Nombre Dueño</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Teléfono:</span>
+                            <span class="value">555-123-4567</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Edad:</span>
+                            <span class="value">3 años</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Peso:</span>
+                            <span class="value">28 kg <button class="btn-text-icon" onclick="openModal('modal-peso')" title="Editar Peso"><i class="fa-solid fa-pen"></i></button></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabs Section -->
+                <div class="card patient-tabs-container">
+                    <div class="tabs-header">
+                        <button class="tab-btn active" data-tab="tab-general">Info General</button>
+                        <button class="tab-btn" data-tab="tab-historial">Historial Clínico</button>
+                        <button class="tab-btn" data-tab="tab-vacunas">Cartilla de Vacunación</button>
+                        <button class="tab-btn" data-tab="tab-hospital">Hospitalización</button>
+                    </div>
+
+                    <div class="tabs-content">
+                        <!-- Tab 1: Info General -->
+                        <div id="tab-general" class="tab-pane active">
+                            <h3>Información General</h3>
+                            <p style="color: var(--text-muted); margin-bottom: 20px;">Detalles completos de la mascota y su entorno. Aquí se puede editar la información básica, agregar notas sobre alergias o comportamiento.</p>
+                            <div class="info-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                <div class="info-box" style="background: #F9FAFB; padding: 15px; border-radius: 8px; border: 1px solid var(--border);">
+                                    <h4 style="margin-bottom: 5px; color: var(--primary);">Alergias Conocidas</h4>
+                                    <p>Ninguna registrada.</p>
+                                </div>
+                                <div class="info-box" style="background: #F9FAFB; padding: 15px; border-radius: 8px; border: 1px solid var(--border);">
+                                    <h4 style="margin-bottom: 5px; color: var(--primary);">Microchip</h4>
+                                    <p>982123456789012</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab 2: Historial Clínico -->
+                        <div id="tab-historial" class="tab-pane">
+                            <div class="flex-between mb-4">
+                                <h3>Historial de Consultas</h3>
+                                <button class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> Nueva Consulta</button>
+                            </div>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-date">12 Oct 2023</div>
+                                    <div class="timeline-content">
+                                        <h4>Consulta General</h4>
+                                        <p>Revisión de rutina. Se encuentra en buen estado de salud. Se recomendó cambio a dieta premium.</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-date">05 May 2023</div>
+                                    <div class="timeline-content">
+                                        <h4>Problema Gastrointestinal</h4>
+                                        <p>Presentó vómito y diarrea. Se administró tratamiento antiemético y dieta blanda por 3 días.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab 3: Cartilla de Vacunación -->
+                        <div id="tab-vacunas" class="tab-pane">
+                             <div class="flex-between mb-4">
+                                <h3>Cartilla Digital</h3>
+                                <button class="btn btn-primary btn-sm" onclick="openModal('modal-vacuna')"><i class="fa-solid fa-plus"></i> Registrar Vacuna</button>
+                            </div>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Vacuna</th>
+                                        <th>Fecha Aplicación</th>
+                                        <th>Próxima Dosis</th>
+                                        <th>Veterinario</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Rabia</td>
+                                        <td>10 Ene 2023</td>
+                                        <td><span class="text-danger font-bold">10 Ene 2024 (Vencida)</span></td>
+                                        <td>Dr. Admin</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Múltiple (Séxtuple)</td>
+                                        <td>15 Mar 2023</td>
+                                        <td>15 Mar 2024</td>
+                                        <td>Dra. López</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Tab 4: Hospitalización -->
+                        <div id="tab-hospital" class="tab-pane">
+                            <h3>Estado de Hospitalización</h3>
+                            <div class="hospital-status-card" style="margin-top: 15px;">
+                                <div class="status-header">
+                                    <div class="icon-circle"><i class="fa-solid fa-bed-pulse"></i></div>
+                                    <div>
+                                        <h4>Ingresado</h4>
+                                        <p>Fecha de ingreso: 26 Oct 2023 - 14:30 hrs</p>
+                                    </div>
+                                </div>
+                                <div class="status-body">
+                                    <p><strong>Motivo:</strong> Observación post-operatoria (Esterilización).</p>
+                                    <p><strong>Dieta:</strong> Ayuno hasta las 20:00 hrs.</p>
+                                    <p><strong>Medicación:</strong> Analgésico cada 8 hrs.</p>
+                                </div>
+                                <div class="status-actions">
+                                    <button class="btn btn-primary btn-sm">Añadir Nota de Evolución</button>
+                                    <button class="btn btn-outline btn-sm border-danger text-danger">Dar de Alta</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- View: Vacunacion (General) -->
+        <section id="view-vacunacion" class="view-section">
+             <header class="view-header">
+                <div>
+                    <h1>Gestión de Vacunas</h1>
+                    <p>Próximas vacunas y recordatorios para pacientes</p>
+                </div>
+            </header>
+            <div class="card">
+                <p>Aquí se mostraría un listado general cruzado de todos los pacientes que necesitan recordatorios de vacunación.</p>
+            </div>
+        </section>
+
+        <!-- View: Agenda -->
+        <section id="view-agenda" class="view-section">
+             <header class="view-header">
+                <div>
+                    <h1>Agenda y Citas</h1>
+                    <p>Calendario de consultas y servicios</p>
+                </div>
+                <button class="btn btn-primary" onclick="openModal('modal-agenda')"><i class="fa-solid fa-plus"></i> Agendar Cita</button>
+            </header>
+            <div class="card">
+                <p style="color: var(--text-muted); margin-bottom: 15px;">Aquí se integraría un calendario interactivo (tipo Google Calendar).</p>
+                <div class="dummy-calendar">
+                    <i class="fa-regular fa-calendar" style="font-size: 3rem; color: #D1D5DB; margin-bottom: 10px;"></i>
+                    <br>Vista de Calendario Interactivo
+                </div>
+            </div>
+        </section>
+
+        <!-- View: Hospital -->
+        <section id="view-hospital" class="view-section">
+             <header class="view-header">
+                <div>
+                    <h1>Control de Hospitalización</h1>
+                    <p>Mapa visual de espacios y jaulas de tratamiento</p>
+                </div>
+            </header>
+            <div class="card">
+                <div class="hospital-map">
+                    <div class="cage occupied">
+                        <div class="cage-number">Jaula 1</div>
+                        <div class="cage-patient"><i class="fa-solid fa-cat"></i> Luna</div>
+                        <div class="cage-status">Observación</div>
+                    </div>
+                    <div class="cage available">
+                        <div class="cage-number">Jaula 2</div>
+                        <div class="cage-patient">Disponible</div>
+                    </div>
+                    <div class="cage available">
+                        <div class="cage-number">Jaula 3</div>
+                        <div class="cage-patient">Disponible</div>
+                    </div>
+                    <div class="cage occupied urgent">
+                        <div class="cage-number">Jaula 4</div>
+                        <div class="cage-patient"><i class="fa-solid fa-dog"></i> Rocky</div>
+                        <div class="cage-status">Cuidados Intensivos</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modals -->
+    <!-- Modal: Registrar Vacuna -->
+    <div class="modal-overlay" id="modal-vacuna">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Registrar Nueva Vacuna</h3>
+                <button class="btn-close" onclick="closeModal('modal-vacuna')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Tipo de Vacuna</label>
+                    <select class="form-control">
+                        <option>Rabia</option>
+                        <option>Múltiple (Séxtuple)</option>
+                        <option>Bordetella</option>
+                        <option>Leucemia Felina</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Fecha de Aplicación</label>
+                    <input type="date" class="form-control" value="2023-10-26">
+                </div>
+                <div class="form-group">
+                    <label>Fecha de Próxima Dosis</label>
+                    <input type="date" class="form-control" value="2024-10-26">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('modal-vacuna')">Cancelar</button>
+                <button class="btn btn-primary" onclick="closeModal('modal-vacuna')">Guardar Registro</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Editar Peso -->
+    <div class="modal-overlay" id="modal-peso">
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h3>Actualizar Peso</h3>
+                <button class="btn-close" onclick="closeModal('modal-peso')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Peso (kg)</label>
+                    <input type="number" step="0.1" class="form-control" value="28.0">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('modal-peso')">Cancelar</button>
+                <button class="btn btn-primary" onclick="closeModal('modal-peso')">Actualizar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Nuevo Paciente -->
+    <div class="modal-overlay" id="modal-nuevo-paciente">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Registrar Nuevo Paciente</h3>
+                <button class="btn-close" onclick="closeModal('modal-nuevo-paciente')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Nombre de la Mascota</label>
+                    <input type="text" class="form-control" placeholder="Ej. Firulais">
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label>Especie</label>
+                        <select class="form-control">
+                            <option>Perro</option>
+                            <option>Gato</option>
+                            <option>Otro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Raza</label>
+                        <input type="text" class="form-control" placeholder="Ej. Pug">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Nombre del Dueño</label>
+                    <input type="text" class="form-control" placeholder="Nombre completo">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('modal-nuevo-paciente')">Cancelar</button>
+                <button class="btn btn-primary" onclick="closeModal('modal-nuevo-paciente')">Crear Expediente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Agendar Cita -->
+    <div class="modal-overlay" id="modal-agenda">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Agendar Nueva Cita</h3>
+                <button class="btn-close" onclick="closeModal('modal-agenda')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Mascota / Paciente</label>
+                    <input type="text" class="form-control" placeholder="Nombre de la mascota">
+                </div>
+                <div class="form-group">
+                    <label>Servicio</label>
+                    <select class="form-control">
+                        <option>Consulta Médica</option>
+                        <option>Baño y Estética</option>
+                        <option>Vacunación</option>
+                        <option>Desparasitación</option>
+                        <option>Cirugía</option>
+                    </select>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label>Fecha</label>
+                        <input type="date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Hora</label>
+                        <input type="time" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Notas Adicionales</label>
+                    <textarea class="form-control" rows="3" placeholder="Ej. El dueño menciona que no ha comido bien..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('modal-agenda')">Cancelar</button>
+                <button class="btn btn-primary" onclick="closeModal('modal-agenda')">Agendar Cita</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="back/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4D84FF" />
+      <stop offset="100%" style="stop-color:#52FF42" />
+    </linearGradient>
+  </defs>
+  <!-- Cuerpo Perro (Silueta Minimalista) -->
+  <path d="M20 85c0-25 10-45 30-45s30 20 30 45" fill="none" stroke="url(#logoGrad)" stroke-width="8" stroke-linecap="round"/>
+  <!-- Cuerpo Gato (Silueta Minimalista) -->
+  <path d="M55 85c0-15 7-28 18-28s18 13 18 28" fill="none" stroke="url(#logoGrad)" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
+  <!-- Orejas Perro -->
+  <path d="M25 40l-5-12 12 5M45 40l5-12-12 5" fill="url(#logoGrad)"/>
+  <!-- Orejas Gato -->
+  <path d="M60 55l-3-10 8 3M85 55l3-10-8 3" fill="url(#logoGrad)"/>
+  <!-- Huella decorativa -->
+  <circle cx="50" cy="20" r="5" fill="url(#logoGrad)"/>
+</svg>
